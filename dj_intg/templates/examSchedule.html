@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content" style="width: 90vw;">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card" >
+          <div class="card" >
+            <div class="card-body" >
+              <h4 class="card-title" style="color:#ed1c24; font-size: 2em;">Exam</h4>
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                         <!-- Note Container -->
+                         <div class="card mb-4">
+                          {% comment %} <div class="card-body" style="background-color: #f8f9fa; border-left: 4px solid #17a2b8;"> {% endcomment %}
+                            <div class="card-body" style="background-color: #f8f9fa; border-left: 4px solid #ed1c24;">
+                            <h5 class="card-title" style="font-weight: bold;">Important Note</h5>
+                            <p class="card-text">Note that one day = 8 hours and one half-day = 4 hours.</p>
+                          </div>
+                        </div>
+                        <!-- Fin de Note Container -->
+                    <form id="examForm" method="POST" action="" class="form-sample" onsubmit="return validateForm()">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Rev. Start</label>
+                            <div class="col-sm-9">
+                              <input type="datetime-local" name="debut_revision" class="form-control" id="debut_revision" min="{{ today|date:'Y-m-d\TH:i' }}" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Subject</label>
+                            <div class="col-sm-9">
+                              <select name="matiere" id="matiere" class="form-control" required>
+                                <option disabled selected hidden>Select a Subject</option>
+                                
+                                <option value="Algorithms 1">Algorithms 1</option>
+                                <option value="Algorithms 2">Algorithms 2</option>
+                                <option value="Business Environment and strategies ">Business Environment and strategies </option>
+                                <option value="CCNA">CCNA</option>
+                                <option value="Communication, Culture and Citizenship A1">Communication, Culture and Citizenship A1</option>
+                                <option value="Communication, Culture and Citizenship A2">Communication, Culture and Citizenship A2</option>
+                                <option value="Communication, Culture and Citizenship A3">Communication, Culture and Citizenship A3</option>
+                                <option value="Communication, Culture and Citizenship F1">Communication, Culture and Citizenship F1</option>
+                                <option value="Communication, Culture and Citizenship F2">Communication, Culture and Citizenship F2</option>
+                                <option value="Communication, Culture and Citizenship F3">Communication, Culture and Citizenship F3</option>
+                                <option value="Communication Networks">Communication Networks</option>
+                                <option value="Computer Systems and Networks">Computer Systems and Networks</option>
+                                <option value="Database">Database</option>
+                                <option value="Database Management System:SGBD">Database Management System:SGBD</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Estimation Techniques for Engineers">Estimation Techniques for Engineers</option>
+                                <option value="Financial Analysis">Financial Analysis</option>
+                                <option value="Fundamentals of Math 1">Fundamentals of Math 1</option>
+                                <option value="Fundamentals of Math 2 ">Fundamentals of Math 2 </option>
+                                <option value="Fundamentals of Math 3">Fundamentals of Math 3</option>
+                                <option value="Fundamentals of Math 4">Fundamentals of Math 4</option>
+                                <option value="IP essentials">IP essentials</option>
+                                <option value="IPNet routing">IPNet routing</option>
+                                <option value="Language Theory:TLA">Language Theory:TLA</option>
+                                <option value="Microcontroller Architecture<">Microcontroller Architecture</option>
+                                <option value="Network fundamentals">Network fundamentals</option>
+                                <option value="Numerical Analysis">Numerical Analysis</option>
+                                <option value="Object-oriented design and Java Programming">Object-oriented design and Java Programming</option>
+                                <option value="Object-Oriented Programming using C++">Object-Oriented Programming using C++</option>
+                                <option value="Photo and video editing">Photo and video editing</option>
+                                <option value="Procedural Programming 1">Procedural Programming 1</option>
+                                <option value="Procedural Programming 2">Procedural Programming 2</option>
+                                <option value="Programming for Mobile Terminals">Programming for Mobile Terminals</option>
+                                <option value="Scientific computing">Scientific computing</option>
+                                <option value="Software Engineering and Case Tools:GL">Software Engineering and Case Tools:GL</option>
+                                <option value="Switched Network">Switched Network</option>
+                                <option value="Systems and Scripting">Systems and Scripting </option>
+                                <option value="Unified Modeling Language UML">Unified Modeling Language UML</option>
+                                <option value="Unix">Unix</option>
+                                <option value="Web Technologies 2.0<">Web Technologies 2.0</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Coeff</label>
+                            <div class="col-sm-9">
+                              <select name="coefficient" id="coefficient" class="form-control" required>
+                                <option disabled selected hidden>Select a Coefficient</option>
+                                <option value="Coeff1">1</option>
+                                <option value="Coeff1,5">1,5</option>
+                                <option value="Coeff2">2</option>
+                                <option value="Coeff3">3</option>
+                                <option value="Coeff4">4</option>
+                                <option value="Coeff5">5</option>
+                                <option value="Coeff7">7</option>
+                                <option value="Coeff8">8</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Test Date</label>
+                            <div class="col-sm-9">
+                              <input type="datetime-local" name="date_examen" class="form-control" id="date_examen" min="{{ today|date:'Y-m-d\TH:i' }}" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Level</label>
+                            <div class="col-sm-9">
+                              <select name="niveau" id="niveau" class="form-control" required>
+                                <option disabled selected hidden>Select a Level</option>
+                                <option value="Niv1">Low level(Scores below 10)</option>
+                                <option value="Niv2">Advanced level(Scores from 10 to 13)</option>
+                                <option value="Niv3">Intermediate level(Scores from 14 to 16)</option>
+                                <option value="Niv4">Highly proficient(Scores from 17 to 20)</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row justify-content-end mt-5">
+                            <div class="col-sm-4 offset-sm-4">
+                              <button type="submit" class="button">Generate</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  <center>
+                    <div>
+                      {% if prediction_made %}
+                      <div class="card mt-4 shadow-lg border border-4">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Prediction Period</h4>
+                            <hr>
+                            <p class="text-center">Your predicted study period for <strong>{{ matiere }}</strong> is: <strong class="text-danger">{{ predh }}</strong></p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p><strong>Start Date:</strong> {{ start_date }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><strong>End Date:</strong> {{ end_date }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  {% endif %}
+                    </div>
+                  </center>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function validateForm() {
+    var debutRevision = document.getElementById('debut_revision').value;
+    var matiere = document.getElementById('matiere').value;
+    var coefficient = document.getElementById('coefficient').value;
+    var dateExamen = document.getElementById('date_examen').value;
+    var niveau = document.getElementById('niveau').value;
+
+    if (debutRevision === '' || matiere === "Select a Subject" || coefficient === "Select a Coefficient" || dateExamen === '' || niveau === "Select a Level" || !debutRevision || !matiere || !coefficient || !dateExamen  || !niveau ) {
+        alert('Please fill in all fields.');
+        return false;
+    }
+
+    var today = new Date();
+    var selectedDebutRevision = new Date(debutRevision);
+    var selectedDateExamen = new Date(dateExamen);
+    if(selectedDateExamen < selectedDebutRevision){
+      alert("Exam Date Should be after start revision date.")
+      return false;
+    }
+    return true;
+}
+</script>
+
+{% endblock %}

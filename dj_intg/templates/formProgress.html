@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row" style="width: 75vw;">
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card" style="width: 75vw;">
+                
+              </div>
+            </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card" >
+                <div class="card-body">
+                  <h4 class="card-title" style="color: #ed1c24; font-size: 2em;">Subject List</h4>
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        
+                        <div class="table-responsive">
+                        
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Subject</th>
+                                <th>Action</th>
+                                <th>Days Predicted</th>
+                                <th>Progress</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for progress in DATA %}
+                                <tr>
+                                    <td>{{ progress.matiere }}</td>
+                                    <td> 
+                                        <div> 
+                                        <a href="{% url 'updateprogress' progress.id %}"><i class="fas fa-edit" style="font-size: 20px; color:#1ba045; margin-right: 15px;"></i></a>
+      
+                                          <a href="{% url 'deletedata' progress.id %}">
+                                            <i class="fas fa-trash-alt" style="font-size: 20px; color:#ce220f; margin-right: 15px;"></i> 
+                                        </a> 
+                                        </div> 
+                                      </td> 
+                                   
+                                        <td>{{ progress.predh }} </td>
+                                    
+                                      <td>{{ progress.progressvalue }}%</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<style>
+  .alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+
+        {% endblock %}
+       
